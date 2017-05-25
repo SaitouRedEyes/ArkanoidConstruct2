@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="score" sid="502995791138781" static="0" type="number">0</variable>
+        <event-group description="" sid="715412550059468" title="Player Movement">
+            <sub-events>
+                <event-block sid="274763925009047">
+                    <conditions>
+                        <condition id="5" name="Key code is down" sid="417553719480849" type="Keyboard">
+                            <param id="0" name="Keycode">37</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="471760446600125" type="Player">
+                            <param id="0" name="X">Player.X - Player.speed</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="838818741654760">
+                    <conditions>
+                        <condition id="5" name="Key code is down" sid="705216114195465" type="Keyboard">
+                            <param id="0" name="Keycode">39</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="377140812382052" type="Player">
+                            <param id="0" name="X">Player.X + Player.speed</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="774588167060893" title="Player X-Bound Collision">
+            <sub-events>
+                <event-block sid="616683606442707">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="762881652048948" type="Ball">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="X co-ordinate">LayoutWidth - (Ball.Width / 2)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="392919404826421" type="Ball">
+                            <param id="0" name="Instance variable">speedX</param>
+                            <param id="1" name="Value">Ball.speedX * -1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="801939390445059">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="309204773430267" type="Ball">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">Ball.Width / 2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="937601207039133" type="Ball">
+                            <param id="0" name="Instance variable">speedX</param>
+                            <param id="1" name="Value">Ball.speedX * -1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="509309002778528" title="Player Y-Bound Collision">
+            <sub-events>
+                <event-block sid="585432896034864">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="151113096419204" type="Ball">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Y co-ordinate">LayoutHeight - (Ball.Height / 2)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="531315954696685" type="System">
+                            <param id="0" name="Layout">Lose</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="754776007500685">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="118625189658557" type="Ball">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="Y co-ordinate">Ball.Height / 2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="362214555657165" type="Ball">
+                            <param id="0" name="Instance variable">speedY</param>
+                            <param id="1" name="Value">Ball.speedY * -1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="591139218774276">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="915282664730984" type="System" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="172942088333989" type="Ball">
+                    <param id="0" name="X">Ball.X + Ball.speedX</param>
+                </action>
+                <action id="-2" name="Set Y" sid="154749166647778" type="Ball">
+                    <param id="0" name="Y">Ball.Y - Ball.speedY</param>
+                </action>
+                <action id="-2" name="Set Y" sid="229902504060497" type="Bullet">
+                    <param id="0" name="Y">Bullet.Y - 5</param>
+                </action>
+                <action id="0" name="Set text" sid="939919799647443" type="Score">
+                    <param id="0" name="Text">&quot;Score: &quot; &amp; score</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="194430604299359">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="233139484841098" type="Ball">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="216840185792931" type="Ball">
+                    <param id="0" name="Instance variable">speedY</param>
+                    <param id="1" name="Value">Ball.speedY*-1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="664107799656943">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="633911775989412" type="Ball">
+                    <param id="0" name="Object">Brick1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="367315941378326" type="Ball">
+                    <param id="0" name="Instance variable">speedY</param>
+                    <param id="1" name="Value">Ball.speedY*-1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="312625747679717" type="Brick1" />
+                <action id="-10" name="Add to" sid="665011525872113" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="948641063406906">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="875084103631513" type="Ball">
+                    <param id="0" name="Object">Brick2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="782202224928983" type="Ball">
+                    <param id="0" name="Instance variable">speedY</param>
+                    <param id="1" name="Value">Ball.speedY*-1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="709735006123083" type="Brick2" />
+                <action id="-10" name="Add to" sid="535324224281844" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="866949662982019">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="791335064844913" type="Ball">
+                    <param id="0" name="Object">Brick3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="977199743374298" type="Ball">
+                    <param id="0" name="Instance variable">speedY</param>
+                    <param id="1" name="Value">Ball.speedY*-1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="123652517764114" type="Brick3" />
+                <action id="-10" name="Add to" sid="984475912462451" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="556569447395664">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="998029547759796" type="Ball">
+                    <param id="0" name="Object">Brick4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="406229887914752" type="Ball">
+                    <param id="0" name="Instance variable">speedY</param>
+                    <param id="1" name="Value">Ball.speedY*-1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="613940192917668" type="Brick4" />
+                <action id="-10" name="Add to" sid="208155417056270" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="395580320441950">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="682654869322520" type="Ball">
+                    <param id="0" name="Object">Brick5</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="114122047478744" type="Ball">
+                    <param id="0" name="Instance variable">speedY</param>
+                    <param id="1" name="Value">Ball.speedY*-1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="795903452643157" type="Brick5" />
+                <action id="-10" name="Add to" sid="884507790795288" type="System">
+                    <param id="0" name="Variable">score</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="163374352611265" title="Win Conditions">
+            <sub-events>
+                <event-block sid="301171932550069">
+                    <conditions>
+                        <condition id="-31" inverted="1" name="Object UID exists" sid="299321628548718" type="System">
+                            <param id="0" name="UID">4</param>
+                        </condition>
+                        <condition id="-31" inverted="1" name="Object UID exists" sid="986950694990955" type="System">
+                            <param id="0" name="UID">5</param>
+                        </condition>
+                        <condition id="-31" inverted="1" name="Object UID exists" sid="125748955757384" type="System">
+                            <param id="0" name="UID">6</param>
+                        </condition>
+                        <condition id="-31" inverted="1" name="Object UID exists" sid="501849847583713" type="System">
+                            <param id="0" name="UID">7</param>
+                        </condition>
+                        <condition id="-31" inverted="1" name="Object UID exists" sid="913520759997649" type="System">
+                            <param id="0" name="UID">8</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="669654452485823" type="System">
+                            <param id="0" name="Layout">Win</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="536508340418321">
+            <conditions>
+                <condition id="6" name="On key code released" sid="260162731095135" type="Keyboard">
+                    <param id="0" name="Keycode">32</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="857039859906982" type="Player">
+                    <param id="0" name="Object">Bullet</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
